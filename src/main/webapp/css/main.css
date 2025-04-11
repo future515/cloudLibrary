@@ -1,0 +1,84 @@
+
+.header-self {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    background-color: #2c3e50;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-self {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user-info-self {
+    display: flex;
+    align-items: center;
+}
+
+.username-self {
+    margin-right: 15px;
+}
+.logout-btn-self {
+    padding: 5px 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* 主体内容区 */
+.container-self {
+    display: flex;
+    flex:1;
+}
+.sidebar-self {
+    width: 200px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px 0;
+    height: 100vh;
+}
+
+.menu-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #2c3e50;
+}
+
+.menu-item.active {
+    background-color: #2980b9;
+}
+
+/* 右侧内容区 */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.page-title {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+#dataList {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#dataList td {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

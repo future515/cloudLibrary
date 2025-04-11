@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=
+       "http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 开启注册扫描 -->
+	<context:component-scan base-package="edu.hebtu"></context:component-scan>
+
+	<!-- spring 和 mybatis整合：ioc思想 1.数据源 2.sqlSessionFactory 3.mapper对象 -->
+	<!-- 数据源 -->
+	<!-- 读取外部配置,加载数据库 -->
+	<context:property-placeholder location="db.properties" />
+
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${mysql.driver}" />
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+	</bean>
+
+	<!-- 加载工厂类，生产session的工厂类,把数据库配置注入到工厂类中 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="edu.hebtu.pojo"/>
+	</bean>
+	<!-- 把所有的dao(mapper)中的接口都交给Spring管理 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!---->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+		<property name="basePackage" value="edu.hebtu.dao"></property>
+	</bean>
+	<!-- 配置业务层Bean -->
+	<!--
+		<bean id="userService"
+			class="edu.hebtu.service.impl.UserServiceImpl">
+			<property name="userDao" ref="userDao"></property>
+		</bean>
+	 -->
+</beans>
